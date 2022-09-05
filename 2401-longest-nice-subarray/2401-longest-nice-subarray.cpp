@@ -13,7 +13,7 @@ public:
                num^=nums[j++];     // XoR to remove where bits are set   
             }  
             // if nums & nums[i]==0;
-             num|= nums[i]; // add number
+             num|= nums[i]; // add number---> set bits in num with current nums[i]
             ans = max(ans,i-j+1); // max length
         }
         return ans;
