@@ -13,8 +13,10 @@ class Solution {
 public:
     TreeNode* pruneTree(TreeNode* root) {
         if (!root) return root;
-        root->left = pruneTree(root->left);
-        root->right = pruneTree(root->right);
+        TreeNode* l= pruneTree(root->left);
+        TreeNode* r= pruneTree(root->right);
+        root->left=l;
+        root->right=r;
         if(!root->left && !root->right && root->val==0) 
         {
             
