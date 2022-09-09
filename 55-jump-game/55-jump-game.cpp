@@ -9,6 +9,7 @@ public:
         {
             if(canJumpUtil(nums,i+j,dp))
                 return dp[i]=true;
+            
         }
         return dp[i]=false;
     }
