@@ -1,4 +1,4 @@
-//User function Template for C++
+//User function Template for C++ code
 class Solution{
   public:
       vector<int> v;
