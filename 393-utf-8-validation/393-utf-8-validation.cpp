@@ -5,7 +5,7 @@ public:
     int count = 0;       // should be same as count of  n-1 times 10XXXXXX
     for (int i = 0; i < n; i++){    
       int ele = data[i]; 
-      if (!count){ 
+      if (count==0){ 
 	   // if the first 3 bits are 110, then the next byte is part of the current UTF-8 character
         if ((ele >> 5) == 0b110) 
           count = 1; 
