@@ -16,7 +16,7 @@ public:
         else if ((ele >> 3) == 0b11110)
           count = 3; 
 		 // if the first bit is 1, then return false
-        else if ((ele >> 7))
+        else if ((ele >> 7)==0b1)
           return false; 
       }
       else{
