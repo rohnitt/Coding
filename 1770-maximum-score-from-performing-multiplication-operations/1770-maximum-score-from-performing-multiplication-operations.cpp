@@ -18,6 +18,7 @@ public:
     int maximumScore(vector<int>& nums, vector<int>& m) {
         int n=nums.size();
         vector<vector<int>>dp(m.size(),vector<int>(m.size(),INT_MIN));
+//vector<vector<vector<int>>> dp(m.size(), vector<vector<int>>(m.size(), vector<int>(m.size(), INT_MIN)));
         return rec(0,0,n-1,nums,m,dp);
     }
 };
