@@ -1,32 +1,73 @@
 class Solution {
 public:
-    string pushDominoes(string s) {
-    int N = s.size(), right = -1;
-    for (int i = 0; i < N; ++i) {
-        if (s[i] == 'L') {
-            if (right == -1) { 
-                // Step 2
-                for (int j = i - 1; j >= 0 && s[j] == '.'; --j) {
-                  s[j] = 'L';  
-                } 
-            } else {
-                // Step 8
-                for (int j = right + 1, k = i - 1; j < k; ++j, --k) {
-                    s[j] = 'R';
-                    s[k] = 'L';
-                } 
-                right = -1;
+    string pushDominoes(string dominoes) {
+        int n = dominoes.size();
+        vector<int> left(n, 0), right(n, 0);
+        char prev = '.';
+        int count = 1;
+        for(int i = 0; i < n; i++){
+            if(dominoes[i] == 'R'){
+                prev = 'R';
+                count = 1;
+                continue;
             }
-        } else if (s[i] == 'R') {
-            if (right != -1) {
-                for (int j = right + 1; j < i; ++j) s[j] = 'R';
+            else if(dominoes[i] == 'L'){
+                prev = 'L';
             }
-            right = i;
+            
+            if(prev == 'R' && dominoes[i] == '.'){
+                right[i] = count;
+                count++;
+            }
         }
+        
+        
+        prev = '.';
+        count = 1;
+        for(int i = n - 1; i >= 0; i--){ //right to left
+            if(dominoes[i] == 'L'){
+                prev = 'L';
+                count = 1;
+                continue;
+            }
+            
+            else if(dominoes[i] == 'R'){
+                prev = 'R';
+            }
+            if(prev == 'L' && dominoes[i] == '.'){
+                left[i] = count;
+                count++;
+            }
+            
+        }
+        
+        
+        string finalResult = "";
+        for(int i = 0; i < n; i++){
+            if(left[i] == 0 && right[i] == 0){
+                finalResult += dominoes[i];
+            }
+            
+            else if(left[i] == 0){
+                finalResult += 'R';
+            }
+            
+            else if(right[i] == 0){
+                finalResult += 'L';
+            }
+            
+            else if(left[i] == right[i]){
+                finalResult += '.';
+            }
+            else if(left[i] > right[i]){
+                finalResult += 'R';
+            }
+            else{
+                finalResult += 'L';
+            }
+            
+        }
+        
+        return finalResult;
     }
-    if (right != -1) {
-        for (int j = right + 1; j < N; ++j) s[j] = 'R';
-    }
-    return s;
-}
 };
